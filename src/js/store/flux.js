@@ -11,8 +11,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 					title: "SECOND",
 					background: "white",
 					initial: "white"
-				}
-			]
+				}				
+			],
+			personas: [],
+			vehiculos: [],
+			planetas: []
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -37,6 +40,21 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				//reset the global store
 				setStore({ demo: demo });
+			},
+			loadPersonas: async ()=> {
+				const resp = await fetch("https://www.swapi.tech/api/people/")
+				const data = await resp.json()
+				setStore({ personas: data.results });
+			},
+			loadVehiculos: async ()=> {
+				const resp = await fetch("https://www.swapi.tech/api/vehicles/")
+				const data = await resp.json()
+				setStore({ vehiculos: data.results });
+			},
+			loadPlanetas: async ()=> {
+				const resp = await fetch("https://www.swapi.tech/api/planets/")
+				const data = await resp.json()
+				setStore({ planetas: data.results });
 			}
 		}
 	};
