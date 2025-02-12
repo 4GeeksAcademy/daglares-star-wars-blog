@@ -5,7 +5,7 @@ import { Context } from "../store/appContext.js";
 
 export const Planetas = () => {
 
-  const { store, actions } = useContext(Context);
+  const { store } = useContext(Context);
 
   return (
     <section className="px-5 w-100">
@@ -13,7 +13,13 @@ export const Planetas = () => {
       <div className="d-flex overflow-auto p-2 g-2">
         {store.planetas &&
           store.planetas.map((planet) => (
-            <Card key={planet.uid} item={planet} itemType={"planeta"} />
+            <Card key={planet.uid} item={planet} itemType={"planetas"} 
+            itemDetails={[
+              `Terreno: ${planet.properties?.terrain || "N/A"}`,
+              `Diámetro: ${planet.properties?.diameter ? planet.properties.diameter + " km" : "N/A"}`,
+              `Población: ${planet.properties?.population || "N/A"}`,
+            ]}
+            />
           ))}
       </div>
     </section>

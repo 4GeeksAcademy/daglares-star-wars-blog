@@ -5,7 +5,7 @@ import { Context } from "../store/appContext.js";
 
 export const Personas = () => {
 
-  const { store, actions } = useContext(Context);
+  const { store } = useContext(Context);
 
   return (
     <section className="px-5 w-100">
@@ -13,7 +13,15 @@ export const Personas = () => {
       <div className="d-flex overflow-auto p-2 g-2">
         {store.personas &&
           store.personas.map((personaje) => (
-            <Card key={personaje.uid} item={personaje} itemType={"persona"} />
+            <Card key={personaje.uid} 
+            item={personaje} 
+            itemType={"personas"}
+            itemDetails={[
+              `Género: ${personaje.properties?.gender || "Desconocido"}`,
+              `Altura: ${personaje.properties?.height || "N/A"} cm`,
+              `Peso: ${personaje.properties?.mass || "N/A"} kg`,
+            ]}
+    />
           ))}
       </div>
     </section>
