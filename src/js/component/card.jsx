@@ -6,7 +6,7 @@ export const Card = ({ item, itemType, itemDetails }) => {
   const { store, actions } = useContext(Context);
   const id = item.uid;
   const [details, setDetails] = useState(null);
-  const estaSeleccionado = store.favoritos.includes(item.name);
+  const estaSeleccionado = store.favoritos.find( i => i.uid === item.uid);
 
   let url;
   if (itemType === "personas") {
@@ -41,8 +41,12 @@ export const Card = ({ item, itemType, itemDetails }) => {
           <p className="card-text">
             <ol>
               {itemDetails && itemDetails.length > 0 ? (
-                itemDetails.map((detail, index) => <li key={index}>{detail}</li>)
-              ):(<li>No hay detalles disponibles</li>)}
+                itemDetails.map((detail, index) => (
+                  <li key={index}>{detail}</li>
+                ))
+              ) : (
+                <li>No hay detalles disponibles</li>
+              )}
             </ol>
           </p>
           <div className="d-flex justify-content-between">
@@ -56,8 +60,8 @@ export const Card = ({ item, itemType, itemDetails }) => {
               className="btn btn-outline-danger flex-end"
               onClick={() =>
                 !estaSeleccionado
-                  ? actions.agregarFavoritos(item.name)
-                  : actions.eliminarFavoritos(item.name)
+                  ? actions.agregarFavoritos({...item, itemType})
+                  : actions.eliminarFavoritos({...item, itemType})
               }
             >
               <i

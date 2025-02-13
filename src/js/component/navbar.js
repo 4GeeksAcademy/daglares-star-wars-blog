@@ -16,16 +16,16 @@ const FavoritosDropDown = () => {
         Favoritos ❤
       </button>
       <ul className="dropdown-menu">
-        {store.favoritos &&
-          store.favoritos.map((item) => {
-            return (
-              <li key={"favorito-" + item}>
-                <Link className="dropdown-item" to={``}>
-                  {item}
+        {store.favoritos && store.favoritos.length > 0 ?
+          (store.favoritos.map((item) => (
+              <li key={"favorito-" + item.uid}>
+                <Link className="dropdown-item" to={`/${item.itemType}/${item.uid}`}>
+                  {item.name}
                 </Link>
               </li>
-            );
-          })}
+            ))
+          ) : (<li className="dropdown-item disabled">(none)</li>)
+          }
       </ul>
     </div>
   );

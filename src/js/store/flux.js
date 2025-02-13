@@ -99,21 +99,22 @@ const getState = ({ getStore, getActions, setStore }) => {
         const data = await resp.json();
         setStore({ planetaInfo: data.result });
       },
-      agregarFavoritos: (itemName) => {
+
+      agregarFavoritos: (item) => {
         const store = getStore();
 
-        const itemExistente = store.favoritos.includes(itemName);
+        const itemExistente = store.favoritos.find((i) => i.uid === item.uid );
 
         if (!itemExistente) {
-          setStore({ favoritos: [...store.favoritos, itemName] });
+          setStore({ favoritos: [...store.favoritos, item] });
         }
       },
-      eliminarFavoritos: (itemName) => {
+
+      eliminarFavoritos: (item) => {
         const store = getStore();
 
         const nuevosFavoritos = store.favoritos.filter(
-          (item) => item != itemName
-        );
+          (i) => i.uid !== item.uid);
 
         setStore({ favoritos: nuevosFavoritos });
       },

@@ -22,9 +22,7 @@ const DetallesPlanetas = () => {
       <div className="row g-0">
         <div className="col-md-4">
           <img
-            src={`https://starwars-visualguide.com/assets/img/planets/${
-              planetaUID
-            }.jpg`}
+            src={`https://starwars-visualguide.com/assets/img/planets/${planetaUID}.jpg`}
             className="img-fluid rounded-start"
             alt="Planet Image"
             onError={(e) => {
@@ -36,12 +34,8 @@ const DetallesPlanetas = () => {
         </div>
         <div className="col-md-8">
           <div className="card-body">
-            <h5 className="card-title">
-              {planeta.name}
-            </h5>
-            <p className="card-text">
-              "{store.planetaInfo.description}"
-            </p>
+            <h5 className="card-title">{planeta.name}</h5>
+            <p className="card-text">"{store.planetaInfo.description}"</p>
             <hr className="text-danger my-4" />
             <div className="row my-5">
               <div className="col-2 mb-3 px-1 text-center">
@@ -49,9 +43,7 @@ const DetallesPlanetas = () => {
                   <span className="text-danger fs-5">Name</span>
                 </h1>
                 <ul className="list-unstyled small">
-                  <li className="mb-2 text-danger">
-                    {planeta.name}
-                  </li>
+                  <li className="mb-2 text-danger">{planeta.name}</li>
                 </ul>
               </div>
               <div className="col-2 mb-3 px-1 text-center">
@@ -59,9 +51,7 @@ const DetallesPlanetas = () => {
                   <span className="text-danger fs-5">Climate</span>
                 </h1>
                 <ul className="list-unstyled small">
-                  <li className="mb-2 text-danger">
-                    {planeta.climate}
-                  </li>
+                  <li className="mb-2 text-danger">{planeta.climate}</li>
                 </ul>
               </div>
               <div className="col-2 mb-3 px-1 text-center">
@@ -69,9 +59,7 @@ const DetallesPlanetas = () => {
                   <span className="text-danger fs-5">Population</span>
                 </h1>
                 <ul className="list-unstyled small">
-                  <li className="mb-2 text-danger">
-                    {planeta.population}
-                  </li>
+                  <li className="mb-2 text-danger">{planeta.population}</li>
                 </ul>
               </div>
               <div className="col-2 mb-3 px-1 text-center">
@@ -79,9 +67,7 @@ const DetallesPlanetas = () => {
                   <span className="text-danger fs-5">Orbital Period</span>
                 </h1>
                 <ul className="list-unstyled small">
-                  <li className="mb-2 text-danger">
-                    {planeta.orbital_period}
-                  </li>
+                  <li className="mb-2 text-danger">{planeta.orbital_period}</li>
                 </ul>
               </div>
               <div className="col-2 mb-3 px-1 text-center">
@@ -99,9 +85,7 @@ const DetallesPlanetas = () => {
                   <span className="text-danger fs-5">Diameter</span>
                 </h1>
                 <ul className="list-unstyled small">
-                  <li className="mb-2 text-danger">
-                    {planeta.diameter}
-                  </li>
+                  <li className="mb-2 text-danger">{planeta.diameter}</li>
                 </ul>
               </div>
             </div>
