@@ -6,21 +6,24 @@ export const Card = ({ item, itemType, itemDetails }) => {
   const { store, actions } = useContext(Context);
   const id = item.uid;
   const [details, setDetails] = useState(null);
-  const estaSeleccionado = store.favoritos.find( i => i.uid === item.uid);
+  const estaSeleccionado = store.favoritos.find(
+    (i) => i.uid === item.uid && i.itemType === itemType
+  );
 
   let url;
   if (itemType === "personas") {
     url = `https://starwars-visualguide.com/assets/img/characters/${id}.jpg`;
   } else if (itemType === "vehiculos") {
     url = `https://starwars-visualguide.com/assets/img/vehicles/${id}.jpg`;
-  } else {
+  } else if (itemType === "planetas") {
     url = `https://starwars-visualguide.com/assets/img/planets/${id}.jpg`;
   }
 
   const handleImageError = (e) => {
     e.target.onerror = null;
     e.target.src =
-      "https://starwars-visualguide.com/assets/img/placeholder.jpg";
+      //"https://starwars-visualguide.com/assets/img/placeholder.jpg";
+      "https://placehold.co/400x600?text=No+Image";
     e.target.style.maxWidth = "72%";
     e.target.style.display = "block";
     e.target.style.marginLeft = "auto";
@@ -60,8 +63,8 @@ export const Card = ({ item, itemType, itemDetails }) => {
               className="btn btn-outline-danger flex-end"
               onClick={() =>
                 !estaSeleccionado
-                  ? actions.agregarFavoritos({...item, itemType})
-                  : actions.eliminarFavoritos({...item, itemType})
+                  ? actions.agregarFavoritos({ ...item, itemType })
+                  : actions.eliminarFavoritos({ ...item, itemType })
               }
             >
               <i

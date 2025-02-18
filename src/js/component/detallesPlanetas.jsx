@@ -10,6 +10,17 @@ const DetallesPlanetas = () => {
     actions.loadPlanetaInfo(uid);
   }, [uid, actions]);
 
+  const handleImageError = (e) => {
+    e.target.onerror = null;
+    e.target.src = 
+      //"https://starwars-visualguide.com/assets/img/placeholder.jpg"; 
+       "https://placehold.co/400x600?text=No+Image";
+    e.target.style.maxWidth = "72%";
+    e.target.style.display = "block";
+    e.target.style.marginLeft = "auto";
+    e.target.style.marginRight = "auto";
+  };
+
   if (!store.planetaInfo) {
     return <div>Cargando información del planeta...</div>;
   }
@@ -25,11 +36,7 @@ const DetallesPlanetas = () => {
             src={`https://starwars-visualguide.com/assets/img/planets/${planetaUID}.jpg`}
             className="img-fluid rounded-start"
             alt="Planet Image"
-            onError={(e) => {
-              e.target.onerror = null;
-              e.target.src =
-                "https://starwars-visualguide.com/assets/img/placeholder.jpg";
-            }}
+            onError={handleImageError}
           />
         </div>
         <div className="col-md-8">

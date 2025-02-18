@@ -10,6 +10,17 @@ const DetallesPersonas = () => {
     actions.loadPersonaInfo(uid);
   }, [uid, actions]);
 
+  const handleImageError = (e) => {
+    e.target.onerror = null;
+    e.target.src = 
+      //"https://starwars-visualguide.com/assets/img/placeholder.jpg"; 
+      "https://placehold.co/400x600?text=No+Image";
+    e.target.style.maxWidth = "72%";
+    e.target.style.display = "block";
+    e.target.style.marginLeft = "auto";
+    e.target.style.marginRight = "auto";
+  };
+
   if (!store.personaInfo) {
     return <div>Cargando información de la persona...</div>;
   }
@@ -24,7 +35,7 @@ const DetallesPersonas = () => {
           <img
             src={`https://starwars-visualguide.com/assets/img/characters/${personaUID}.jpg`}
             className="img-fluid rounded-start"
-            alt="Character Image"
+            alt="Character Image" onError={handleImageError}
           />
         </div>
         <div className="col-md-8 my-5">

@@ -10,6 +10,17 @@ const DetallesVehiculos = () => {
     actions.loadVehiculoInfo(uid);
   }, [uid, actions]);
 
+  const handleImageError = (e) => {
+    e.target.onerror = null;
+    e.target.src =
+      //"https://starwars-visualguide.com/assets/img/placeholder.jpg";
+      "https://placehold.co/400x600?text=No+Image";
+    e.target.style.maxWidth = "72%";
+    e.target.style.display = "block";
+    e.target.style.marginLeft = "auto";
+    e.target.style.marginRight = "auto";
+  };
+
   if (!store.vehiculoInfo) {
     return <div>Cargando información del vehículo...</div>;
   }
@@ -22,21 +33,16 @@ const DetallesVehiculos = () => {
       <div className="row g-0">
         <div className="col-md-4">
           <img
-            src={`https://starwars-visualguide.com/assets/img/vehicles/${
-              vehiculoUID
-            }.jpg`}
+            src={`https://starwars-visualguide.com/assets/img/vehicles/${vehiculoUID}.jpg`}
             className="img-fluid rounded-start"
             alt="Vehicle Image"
+            onError={handleImageError}
           />
         </div>
         <div className="col-md-8">
           <div className="card-body">
-            <h5 className="card-title">
-              {vehiculo.name}
-            </h5>
-            <p className="card-text">
-              "{store.vehiculoInfo.description}"
-            </p>
+            <h5 className="card-title">{vehiculo.name}</h5>
+            <p className="card-text">"{store.vehiculoInfo.description}"</p>
             <hr className="text-danger my-4" />
             <div className="row">
               <div className="col-2 text-center">
@@ -44,9 +50,7 @@ const DetallesVehiculos = () => {
                   <span className="text-danger fs-5">Name</span>
                 </h1>
                 <ul className="list-unstyled small">
-                  <li className="mb-2 text-danger">
-                    {vehiculo.name}
-                  </li>
+                  <li className="mb-2 text-danger">{vehiculo.name}</li>
                 </ul>
               </div>
               <div className="col-2 mb-3 px-1 text-center">
@@ -54,9 +58,7 @@ const DetallesVehiculos = () => {
                   <span className="text-danger fs-5">Passengers</span>
                 </h1>
                 <ul className="list-unstyled small">
-                  <li className="mb-2 text-danger">
-                    {vehiculo.passengers}
-                  </li>
+                  <li className="mb-2 text-danger">{vehiculo.passengers}</li>
                 </ul>
               </div>
               <div className="col-2 mb-3 px-1 text-center">
@@ -74,9 +76,7 @@ const DetallesVehiculos = () => {
                   <span className="text-danger fs-5">Length</span>
                 </h1>
                 <ul className="list-unstyled small">
-                  <li className="mb-2 text-danger">
-                    {vehiculo.length}
-                  </li>
+                  <li className="mb-2 text-danger">{vehiculo.length}</li>
                 </ul>
               </div>
               <div className="col-2 mb-3 px-1 text-center">
@@ -84,9 +84,7 @@ const DetallesVehiculos = () => {
                   <span className="text-danger fs-5">Crew</span>
                 </h1>
                 <ul className="list-unstyled small">
-                  <li className="mb-2 text-danger">
-                    {vehiculo.crew}
-                  </li>
+                  <li className="mb-2 text-danger">{vehiculo.crew}</li>
                 </ul>
               </div>
               <div className="col-2 mb-3 px-1 text-center">
@@ -94,9 +92,7 @@ const DetallesVehiculos = () => {
                   <span className="text-danger fs-5">Consumables</span>
                 </h1>
                 <ul className="list-unstyled small">
-                  <li className="mb-2 text-danger">
-                    {vehiculo.consumables}
-                  </li>
+                  <li className="mb-2 text-danger">{vehiculo.consumables}</li>
                 </ul>
               </div>
             </div>

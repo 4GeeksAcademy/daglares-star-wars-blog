@@ -1,9 +1,10 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 
 const FavoritosDropDown = () => {
-  const { store } = useContext(Context);
+  const { store, actions } = useContext(Context);
+  const [hoverIndex, setHoverIndex] = useState(null);
 
   return (
     <div className="dropdown">
@@ -16,16 +17,31 @@ const FavoritosDropDown = () => {
         Favoritos ❤
       </button>
       <ul className="dropdown-menu">
-        {store.favoritos && store.favoritos.length > 0 ?
-          (store.favoritos.map((item) => (
-              <li key={"favorito-" + item.uid}>
-                <Link className="dropdown-item" to={`/${item.itemType}/${item.uid}`}>
-                  {item.name}
-                </Link>
-              </li>
-            ))
-          ) : (<li className="dropdown-item disabled">(none)</li>)
-          }
+        {store.favoritos && store.favoritos.length > 0 ? (
+          store.favoritos.map((item, index) => (
+            <li
+            key={"favorito-" + item.uid}
+            onMouseEnter={() => setHoverIndex(index)}
+            onMouseLeave={() => setHoverIndex(null)}
+            className="d-flex align-items-center px-2"
+          >
+            <Link className="dropdown-item flex-grow-1" to={`/${item.itemType}/${item.uid}`}>
+              {item.name}
+            </Link>
+            {hoverIndex === index && (
+              <button
+                onClick={() => actions.eliminarFavoritos(item)}
+                className="btn btn-link text-danger p-0 ms-2"
+                style={{ cursor: "pointer" }}
+              >
+                <i className="fa-solid fa-trash"></i>
+              </button>
+            )}
+          </li>
+          ))
+        ) : (
+          <li className="dropdown-item disabled">(none)</li>
+        )}
       </ul>
     </div>
   );
